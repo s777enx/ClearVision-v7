@@ -11,7 +11,7 @@
 $sf: var(--saturation-factor, 1);
 $calc: h calc(#{$sf} * s) l / alpha; // avoid repetition
 // DO NOT DISTRIBUTE THESE; BACKEND ONLY STUFF.
-:is(#{c(main themeLight)}, #{c(main themeDark)}) {
+:is(#{c(main themeLight)}, #{c(main themeDark)}, #{c(main themeDarker)}, #{c(main themeMidnight)}) {
   &,
   &:is(#{c(main themeLight)}, #{c(main themeDark)}) {
     // DO NOT EDIT THESE -- VARIABLES ARE NOT TO BE DISTRIBUTED TO END USER.
@@ -19,9 +19,14 @@ $calc: h calc(#{$sf} * s) l / alpha; // avoid repetition
     --text-muted: hsl(from var(--muted-text) #{$calc});
     --text-primary: hsl(from var(--primary-text) #{$calc});
     --text-secondary: hsl(from var(--secondary-text) #{$calc});
-
-    --input-background: hsl(from var(--input-shading) #{$calc});
-    --input-border: hsl(from var(--input-background) h s l/.1);
+    
+    // shadings are defined in .theme-dark/.theme-light -- turns out every color variable discord uses also uses saturation-factor.
+    --hsl-background-shading: hsl(from var(--background-shading) #{$calc});
+    --hsl-card-shading: hsl(from var(--card-shading) #{$calc});
+    --hsl-popout-shading: hsl(from var(--popout-shading) #{$calc});
+    --hsl-modal-shading: hsl(from var(--modal-shading) #{$calc});
+    --hsl-input-shading: hsl(from var(--input-shading) #{$calc});
+    --hsl-input-border-shading: hsl(from var(--hsl-input-shading) h s l/.1);
   }
 }
 :root {
@@ -38,13 +43,8 @@ $calc: h calc(#{$sf} * s) l / alpha; // avoid repetition
   --hsl-dnd-color: hsl(from var(--dnd-color) #{$calc});
   --hsl-streaming-color: hsl(from var(--streaming-color) #{$calc});
   --hsl-offline-color: hsl(from var(--offline-color) #{$calc});
-  // shadings are defined in .theme-dark/.theme-light -- turns out every color variable discord uses also uses saturation-factor.
-  --hsl-background-shading: hsl(from var(--background-shading) #{$calc});
-  --hsl-card-shading: hsl(from var(--card-shading) #{$calc});
-  --hsl-card-shading-inverted: hsl(from var(--hsl-card-shading) h s calc(100 - l) / calc(alpha * 0.2));
-  --hsl-popout-shading: hsl(from var(--popout-shading) #{$calc});
-  --hsl-modal-shading: hsl(from var(--modal-shading) #{$calc});
 
+  // fonts
   --font-primary: var(--main-font);
   --font-display: var(--main-font);
   --font-code: var(--code-font);
@@ -67,18 +67,21 @@ $calc: h calc(#{$sf} * s) l / alpha; // avoid repetition
   --background-shading-percent: 100%;
   --background-image: url(https://clearvision.github.io/images/sapphire.jpg);
   --background-attachment: fixed;
+  --background-filter: saturate(calc(#{$sf} * 1));
+
   --user-popout-image: var(--background-image);
   --user-popout-attachment: var(--background-attachment);
+  --user-popout-filter: var(--background-filter);
+
   --user-modal-image: var(--background-image);
   --user-modal-attachment: var(--background-attachment);
+  --user-modal-filter: var(--background-filter);
+
   --home-icon: url(https://clearvision.github.io/icons/discord.svg);
 
   // Advanced users only kinda thing
   --main-font: 'gg sans', Whitney, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --code-font: Consolas, 'gg mono', 'Liberation Mono', Menlo, Courier, monospace;
-  --background-filter: saturate(calc(#{$sf} * 1));
-  --user-popout-filter: var(--background-filter);
-  --user-modal-filter: var(--background-filter);
 }
 
 /* Light Theme */

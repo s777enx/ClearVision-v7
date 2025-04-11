@@ -30,3 +30,11 @@
     background: cv('shading.bg');
   }
 }
+
+// LOADING ICONS
+#{c(main wanderingCubes)} #{c(main wanderingCubesItem)} {
+  background: cv('color.main');
+}
+#{c(main spinnerCirclePath)} {
+  stroke: cv('color.main');
+}
