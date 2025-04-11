@@ -24,7 +24,7 @@
   --streaming-color: #593695;
   --offline-color: #808080;
   /* APP BACKGROUND */
-  --background-shading-percent: 100%;
+  --background-shading-percent: 60%;
   --background-image: rgba(0,0,0,0.6);
   --background-attachment: fixed;
   --background-filter: saturate(calc(var(--saturation-factor, 1) * 1));
